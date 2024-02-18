@@ -1,2 +1,54 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="mr-5 col-4 justify-content-center">
+      <h1>User info</h1>
+      <%= image_tag current_user.get_profile_image(100, 100) %>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="col">name</th>
+            <th scope="col"><%= current_user.name %></th>
+          </tr>
+          <tr>
+            <th scope="row">introduction</th>
+            <td><%= current_user.introduction %></td>
+        </tbody>
+      </table>
+      <%= link_to edit_user_path(current_user.id), class: "btn btn-outline-secondary col-12" do %>
+        <i class="fa-solid fa-user-gear"></i>
+      <% end %>
+    </div>
+    <div class="ml-4 col-7 justify-content-center">
+      <h1>Users</h1>
+      <% @users.each do |user| %>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="col">image</th>
+            <th scope="col">name</th>
+            <td colspan="3" class="ml-5"></td>
+          </tr>
+          <tr>
+            <td scope="col"><%= image_tag user.get_profile_image(100, 100) %></td>
+            <td scope="col">
+              <%= user.name %>
+            </td>
+            <td scope="col" class="ml-5"><%= link_to "Show", user_path(user.id) %></td>
+        </tbody>
+      </table>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4 justify-content-center mt-5">
+      <h1>New book</h1>
+      <%= form_with model: @book do |f| %>
+        <p>Title</p>
+        <%= f.text_field :title %>
+        <p>Opinion</p>
+        <%= f.text_area :body %><br>
+        <%= f.submit "Create Book", class: "btn btn-success col-4 mt-3" %>
+      <% end %>
+    </div>
+  </div>
+</div>
