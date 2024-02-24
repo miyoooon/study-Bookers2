@@ -22,7 +22,6 @@
     </div>
     <div class="ml-4 col-7 justify-content-center">
       <h1>Books</h1>
-      <% @books.each do |book| %>
       <table class="table">
         <tbody>
           <tr>
@@ -30,6 +29,7 @@
             <th scope="col">Title</th>
             <th scope="col">Opinion</th>
           </tr>
+          <% @books.each do |book| %>
           <tr>
             <td><%= image_tag book.user.get_profile_image(100, 100) %></td>
             <td class="col-3">
@@ -38,9 +38,10 @@
               <% end %>
             </td>
             <td class="col"><%= book.body %></td>
+          </tr>
+           <% end %>
         </tbody>
       </table>
-      <% end %>
     </div>
   </div>
   <div class="row">
